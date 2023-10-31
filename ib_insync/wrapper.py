@@ -365,6 +365,9 @@ class Wrapper:
                 trade.order.auxPrice = order.auxPrice
                 trade.order.orderType = order.orderType
                 trade.order.orderRef = order.orderRef
+                for k, v in dataclassAsDict(order).items():
+                    if v != '?':
+                        setattr(trade.order, k, v)
             else:
                 # ignore '?' values in the order
                 order = Order(**{
